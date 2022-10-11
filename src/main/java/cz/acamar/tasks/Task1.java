@@ -17,6 +17,13 @@ public class Task1 {
      * @return - the length of the last word in the string.
      */
     public int lengthOfLastWord(String str) {
-        return 0;
+        if (str.contains(" ")) {
+            StringBuilder result = new StringBuilder(str).reverse();
+            while (result.indexOf(" ") == 0) {
+                result.deleteCharAt(0);
+            }
+            return result.subSequence(0, result.indexOf(" ")).length();
+        }
+        return str.length();
     }
 }

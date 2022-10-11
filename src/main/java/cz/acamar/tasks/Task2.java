@@ -1,5 +1,7 @@
 package cz.acamar.tasks;
 
+import java.util.LinkedList;
+
 public class Task2 {
 
     /**
@@ -18,6 +20,23 @@ public class Task2 {
      * @return - an array of the squares of each number sorted in non-decreasing order
      */
     public int[] squaresOfSortedArray(int[] input) {
-        return null;
+        LinkedList<Integer> result = new LinkedList<>();
+        int len = input.length;
+        int rBoard = len - 1;
+        int lBoard = 0;
+        while (lBoard <= rBoard){
+            int lSqr = (int) Math.pow(input[lBoard], 2.0);
+            int rSqr = (int) Math.pow(input[rBoard], 2.0);
+            if (lSqr >= rSqr) {
+                result.add(0, lSqr);
+                lBoard++;
+            } else {
+                result.add(0, rSqr);
+                rBoard--;
+            }
+        }
+        return result.stream().mapToInt(value -> value).toArray();
+        //alternative solution:
+        //return Arrays.stream(input).map(e -> (int) Math.pow(Math.abs(e), 2.0)).sorted().toArray();
     }
 }
